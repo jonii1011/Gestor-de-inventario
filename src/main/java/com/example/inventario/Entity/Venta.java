@@ -20,9 +20,9 @@ public class Venta {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    @NotNull(message = "El cliente es obligatorio")
-    private Cliente cliente;
+    @JoinColumn(name = "usuario_id", nullable = false)
+    @NotNull(message = "El usuario es obligatorio")
+    private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id", nullable = false)

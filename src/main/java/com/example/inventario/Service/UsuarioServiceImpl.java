@@ -1,40 +1,42 @@
 package com.example.inventario.Service;
 
-import com.example.inventario.Dto.ClienteDTO;
-import com.example.inventario.Entity.Cliente;
+import com.example.inventario.Dto.UsuarioDTO;
+import com.example.inventario.Entity.Usuario;
 import com.example.inventario.Repository.ClienteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ClienteServiceImpl implements ClienteService{
+@Service
+public class UsuarioServiceImpl implements UsuarioService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     private ClienteRepository clienteRepository;
 
     @Override
-    public List<ClienteDTO> listarClientes() {
-        List<Cliente> clientes = clienteRepository.findAll();
-        return clientes.stream()
+    public List<UsuarioDTO> listarClientes() {
+        List<Usuario> usuarios = clienteRepository.findAll();
+        return usuarios.stream()
                 .map(this::convertirAClienteDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Cliente crearCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+    public Usuario crearCliente(Usuario usuario) {
+        return clienteRepository.save(usuario);
     }
 
     @Override
-    public ClienteDTO actualizarCliente(Long id, Cliente cliente) {
+    public UsuarioDTO actualizarCliente(Long id, Usuario usuario) {
         if (clienteRepository.existsById(id)) {
-            cliente.setId(id);
-            Cliente clienteActualizado = clienteRepository.save(cliente);
-            return convertirAClienteDTO(clienteActualizado);
+            usuario.setId(id);
+            Usuario usuarioActualizado = clienteRepository.save(usuario);
+            return convertirAClienteDTO(usuarioActualizado);
         }
         return null;
     }
@@ -49,21 +51,21 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public ClienteDTO buscarClientePorId(Long id) {
+    public UsuarioDTO buscarClientePorId(Long id) {
         return clienteRepository.findById(id)
                 .map(this::convertirAClienteDTO)
                 .orElse(null); // O lanza una excepción si no se encuentra el cliente
     }
 
     @Override
-    public ClienteDTO buscarClientePorEmail(String email) {
+    public UsuarioDTO buscarClientePorEmail(String email) {
         return clienteRepository.findByEmail(email)
                 .map(this::convertirAClienteDTO)
                 .orElse(null); // O lanza una excepción si no se encuentra el cliente
     }
 
     @Override
-    public ClienteDTO convertirAClienteDTO(Cliente cliente) {
-        return modelMapper.map(cliente, ClienteDTO.class);
+    public UsuarioDTO convertirAClienteDTO(Usuario usuario) {
+        return modelMapper.map(usuario, UsuarioDTO.class);
     }
 }

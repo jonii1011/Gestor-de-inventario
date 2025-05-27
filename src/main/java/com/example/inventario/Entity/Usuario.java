@@ -11,12 +11,12 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "usuarios")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Cliente {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +29,8 @@ public class Cliente {
     @Column(nullable = false)
     private String apellido;
 
+    private Long dni;
+
     private String telefono;
 
     @Email(message = "Email inválido")
@@ -37,6 +39,9 @@ public class Cliente {
     @Column(length = 500)
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Venta> ventas;
+
+    @Enumerated(EnumType.STRING)
+    private Rol rol = Rol.CLIENTE;
 }

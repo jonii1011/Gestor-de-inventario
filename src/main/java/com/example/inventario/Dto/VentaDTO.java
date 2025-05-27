@@ -1,6 +1,6 @@
 package com.example.inventario.Dto;
 
-import com.example.inventario.Entity.Cliente;
+import com.example.inventario.Entity.Usuario;
 import com.example.inventario.Entity.MetodoPago;
 import com.example.inventario.Entity.Producto;
 import jakarta.persistence.*;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class VentaDTO {
-    private Cliente cliente;
+    private Usuario usuario;
     private Producto producto;
     private LocalDate fechaVenta;
     private Double precioFinal;
