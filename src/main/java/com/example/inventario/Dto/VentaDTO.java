@@ -17,8 +17,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class VentaDTO {
-    private Usuario usuario;
-    private Producto producto;
+    private Long usuarioId;
+    private ProductoDTO producto;
     private LocalDate fechaVenta;
     private Double precioFinal;
     @Enumerated(EnumType.STRING)

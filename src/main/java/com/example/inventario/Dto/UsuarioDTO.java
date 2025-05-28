@@ -21,5 +21,5 @@ public class UsuarioDTO {
     private String email;
     private String direccion;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Venta> ventas;
+    private List<VentaDTO> ventas;
 }

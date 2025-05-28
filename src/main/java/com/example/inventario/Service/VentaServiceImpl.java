@@ -32,7 +32,7 @@ public class VentaServiceImpl implements VentaService{
     }
 
     @Override
-    public VentaDTO actualizar(Long id, Venta venta) {
+    public VentaDTO actualizarVenta(Long id, Venta venta) {
         if (ventaRepository.existsById(id)) {
             venta.setId(id);
             Venta ventaActualizado = ventaRepository.save(venta);

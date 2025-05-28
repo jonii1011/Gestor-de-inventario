@@ -1,5 +1,6 @@
 package com.example.inventario.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -40,8 +41,6 @@ public class Usuario {
     private String direccion;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Venta> ventas;
-
-    @Enumerated(EnumType.STRING)
-    private Rol rol = Rol.CLIENTE;
 }

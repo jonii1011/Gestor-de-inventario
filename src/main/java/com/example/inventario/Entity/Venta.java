@@ -1,5 +1,6 @@
 package com.example.inventario.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,7 @@ public class Venta {
     @JoinColumn(name = "producto_id", nullable = false)
     @NotNull(message = "El producto es obligatorio")
     private Producto producto;
-
-    @Column(nullable = false)
+    
     private LocalDate fechaVenta;
 
     @NotNull(message = "El precio final es obligatorio")
